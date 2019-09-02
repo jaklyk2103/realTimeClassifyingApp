@@ -4,7 +4,7 @@ To use app:
 
 Install React Native: 
 
-https://shift.infinite.red/getting-started-with-react-native-development-on-windows-90d85a72ae65
+https://facebook.github.io/react-native/docs/getting-started
 
 Run application:
 
