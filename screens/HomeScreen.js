@@ -14,8 +14,6 @@ export default class HomeScreen extends React.Component {
     super(props);
     this.handleTakePhotoClick = this.handleTakePhotoClick.bind(this);
     this.requestCameraPermission = this.requestCameraPermission.bind(this);
-    this.requestExternalReadPermission = this.requestExternalReadPermission.bind(this);
-    this.requestExternalWritePermission = this.requestExternalWritePermission.bind(this);
   }
 
   async requestCameraPermission() {
@@ -28,59 +26,13 @@ export default class HomeScreen extends React.Component {
         }
       );
       if (permissionResult === PermissionsAndroid.RESULTS.GRANTED) {
-        return await this.requestExternalWritePermission().then((permission) => {
-          return (permission) ? true : false;
-        });
+        return true
       } else {
         alert('Camera permission denied, application cannot use camera.');
-      }
-    } catch (err) {
-      alert('Camera permission err', err);
-      console.warn(err);
-    }
-  }
-
-  async requestExternalWritePermission() {
-    try {
-      const permissionResult = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-        {
-          title: 'CarClassifier App External Storage Write Permission',
-          message:
-            'CarClassifier App needs access to Storage data in your SD Card',
-        }
-      );
-      if (permissionResult === PermissionsAndroid.RESULTS.GRANTED) {
-        return await this.requestExternalReadPermission().then((permission) => {
-          return (permission) ? true : false;
-        });
-      } else {
-        alert('WRITE_EXTERNAL_STORAGE permission denied');
-      }
-    } catch (err) {
-      alert('Write permission err', err);
-      console.warn(err);
-    }
-  }
-
-  async requestExternalReadPermission() {
-    try {
-      const permissionResult = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-        {
-          title: 'CarClassifier App Read Storage Read Permission',
-          message: 'CarClassifier App needs access to your SD Card ',
-        }
-      );
-      if (permissionResult === PermissionsAndroid.RESULTS.GRANTED) {
-        // all permissions granted
-        return true;
-      } else {
-        alert('READ_EXTERNAL_STORAGE permission denied');
         return false;
       }
     } catch (err) {
-      alert('Read permission err', err);
+      alert('Camera permission err', err);
       console.warn(err);
     }
   }
@@ -110,7 +62,7 @@ export default class HomeScreen extends React.Component {
         <TouchableOpacity
           style={styles.button}
           onPress={this.handleTakePhotoClick}>
-          <Text style={styles.buttonText}>TAKE PHOTO OF A CAR</Text>
+          <Text style={styles.buttonText}>START CLASSYFING CARS</Text>
         </TouchableOpacity>
       </View>
     );
