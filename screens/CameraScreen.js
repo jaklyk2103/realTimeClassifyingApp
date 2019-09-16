@@ -17,7 +17,6 @@ import React, {Component} from 'react';
 
     processOutput({data}) {
         const probs = _.map(data, item => _.round(item/255.0, 0.02));
-        console.log(data);
         const orderedData = _.chain(data).zip(outputs).orderBy(0, 'desc').map(item => [_.round(item[0]/255.0, 2), item[1]]).value();
         const outputData = _.chain(orderedData).take(3).map(item => `${item[1]}: ${item[0]}`).join('\n').value();
         const time = Date.now() - (_currentInstant || Date.now());
