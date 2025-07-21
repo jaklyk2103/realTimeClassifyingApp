@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "babel-jest": "24.9.0",
-    "jest": "24.9.0",
+    "jest": "30.0.4",
     "react-test-renderer": "16.4.1"
   },
   "jest": {
